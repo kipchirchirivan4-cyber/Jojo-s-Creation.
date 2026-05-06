@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>You're Offline — Jojo's Creation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --cream: #FDF6ED;
+      --sand: #E8D5B7;
+      --caramel: #C89A63;
+      --terracotta: #C0624A;
+      --bark: #5C4033;
+    }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--bark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .logo { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--sand); margin-bottom: 2rem; object-fit: cover; }
+    .emoji { font-size: 4rem; margin-bottom: 1rem; }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--bark);
+      margin-bottom: 0.8rem;
+    }
+    h1 em { font-style: italic; color: var(--terracotta); }
+    p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #6b4e3d;
+      max-width: 400px;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn:hover { background: var(--bark); transform: translateY(-2px); }
+    .whatsapp-hint {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #9a7060;
+    }
+    .whatsapp-hint a { color: #25D366; font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="emoji">🧶</div>
+  <h1>You're <em>offline</em></h1>
+  <p>
+    Looks like you've lost your connection. The magic of handmade things is still waiting for you — come back when you're online!
+  </p>
+  <button class="btn" onclick="window.location.reload()">Try Again</button>
+  <p class="whatsapp-hint">
+    Still need help? <a href="https://wa.me/254706653748" target="_blank">WhatsApp Joan</a>
+  </p>
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jojo's Creation — Handmade with Love</title>
+
+  <!-- ═══ PWA META TAGS ═══ -->
+  <meta name="description" content="Handmade crochet pieces crafted with love by Joan — scarves, bags, home decor, amigurumi and more. Custom orders welcome."/>
+  <meta name="theme-color" content="#C0624A"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+  <meta name="apple-mobile-web-app-title" content="Jojo's Creation"/>
+  <meta name="application-name" content="Jojo's Creation"/>
+  <meta name="msapplication-TileColor" content="#C0624A"/>
+  <meta name="msapplication-TileImage" content="icons/icon-144x144.png"/>
+
+  <!-- Open Graph (for sharing) -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Jojo's Creation — Handmade with Love"/>
+  <meta property="og:description" content="Handmade crochet pieces crafted with love by Joan."/>
+  <meta property="og:image" content="icons/icon-512x512.png"/>
+
+  <!-- ═══ PWA MANIFEST ═══ -->
+  <link rel="manifest" href="manifest.json"/>
+
+  <!-- ═══ FAVICON & APPLE ICONS ═══ -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16x16.png"/>
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png"/>
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192x192.png"/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --cream: #FDF6ED;
+      --warm-white: #FAF3E8;
+      --sand: #E8D5B7;
+      --caramel: #C89A63;
+      --terracotta: #C0624A;
+      --moss: #7A8C5C;
+      --bark: #5C4033;
+      --charcoal: #2E2420;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Lato', sans-serif; background-color: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.5;
+    }
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(253,246,237,0.88); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--sand);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; color: var(--bark); letter-spacing: 0.02em; }
+    .nav-logo span { color: var(--terracotta); font-style: normal; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: var(--bark); font-weight: 700; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--terracotta); }
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 0 4rem; padding-top: 80px; gap: 4rem;
+      background: linear-gradient(135deg, var(--cream) 60%, var(--sand) 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,154,99,0.15) 0%, transparent 70%);
+      top: -100px; right: -100px; pointer-events: none;
+    }
+    .hero-text { animation: fadeUp 0.9s ease both; }
+    .hero-tag {
+      display: inline-block; font-size: 0.75rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--terracotta); font-weight: 700;
+      margin-bottom: 1.2rem; border-bottom: 2px solid var(--terracotta); padding-bottom: 4px;
+    }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.08; color: var(--bark); margin-bottom: 1.5rem; }
+    h1 em { font-style: italic; color: var(--terracotta); }
+    .hero-desc { font-size: 1.05rem; line-height: 1.8; color: #6b4e3d; max-width: 480px; margin-bottom: 2.5rem; font-weight: 300; }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { padding: 0.9rem 2.2rem; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: all 0.25s; font-family: 'Lato', sans-serif; }
+    .btn-primary { background: var(--terracotta); color: #fff; }
+    .btn-primary:hover { background: var(--bark); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--bark); border: 2px solid var(--bark); }
+    .btn-outline:hover { background: var(--bark); color: var(--cream); transform: translateY(-2px); }
+    /* Hero Visual */
+    .hero-visual { animation: fadeUp 1.1s ease 0.2s both; display: flex; justify-content: center; align-items: center; position: relative; }
+    .yarn-stage { width: 400px; height: 400px; position: relative; }
+    .product-card-hero { background: var(--warm-white); border: 1px solid var(--sand); padding: 2rem; position: absolute; box-shadow: 8px 8px 0 var(--sand); }
+    .pc-main { width: 320px; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .yarn-emoji-big { font-size: 7rem; display: block; margin-bottom: 1rem; line-height: 1; }
+    .pc-label { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--bark); }
+    .badge { position: absolute; background: var(--terracotta); color: #fff; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; padding: 0.4rem 0.8rem; top: -50px; right: -40px; transform: rotate(8deg); box-shadow: 3px 3px 0 var(--bark); }
+    /* SECTION */
+    section { padding: 6rem 4rem; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--caramel); font-weight: 700; margin-bottom: 0.6rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); color: var(--bark); margin-bottom: 1.2rem; }
+    .section-title em { font-style: italic; color: var(--terracotta); }
+    .section-sub { font-size: 1rem; line-height: 1.8; color: #6b4e3d; max-width: 540px; font-weight: 300; }
+    /* ABOUT */
+    .about { background: var(--warm-white); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; border-top: 1px solid var(--sand); border-bottom: 1px solid var(--sand); }
+    /* JOAN PHOTO */
+    .joan-photo-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+    }
+    .joan-photo {
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--sand);
+      box-shadow: 8px 8px 0 var(--caramel);
+    }
+    .joan-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--bark);
+      font-style: italic;
+      text-align: center;
+    }
+    .joan-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 700;
+      text-align: center;
+    }
+    .joan-wa {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: #25D366; color: #fff;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; font-family: 'Lato', sans-serif;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 0.4rem;
+    }
+    .joan-wa:hover { background: #1da851; transform: translateY(-2px); }
+    .about-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .about-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .about-dot { width: 10px; height: 10px; background: var(--terracotta); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .about-item p { font-size: 0.95rem; line-height: 1.6; color: #5a3e35; font-weight: 300; }
+    /* PRODUCTS */
+    .products { background: var(--cream); }
+    .products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; }
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .product-card { background: var(--warm-white); border: 1px solid var(--sand); overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 8px 8px 0 var(--sand); }
+    .product-thumb { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 5rem; position: relative; }
+    .thumb-cream { background: linear-gradient(135deg, #f5e6d3, #e8d2b4); }
+    .thumb-rose  { background: linear-gradient(135deg, #f0d4cd, #d9a99e); }
+    .thumb-moss  { background: linear-gradient(135deg, #d4e0c4, #b0c49a); }
+    .thumb-sand  { background: linear-gradient(135deg, #f0e5d0, #d9c8a6); }
+    .thumb-terra { background: linear-gradient(135deg, #f0d5c8, #c9836e); }
+    .thumb-sky   { background: linear-gradient(135deg, #d0e4f0, #9ac4d9); }
+    .product-tag { position: absolute; top: 1rem; left: 1rem; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; padding: 0.3rem 0.7rem; background: var(--moss); color: #fff; }
+    .tag-new  { background: var(--terracotta); }
+    .tag-sale { background: var(--caramel); }
+    .product-info { padding: 1.5rem; }
+    .product-info h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--bark); margin-bottom: 0.4rem; }
+    .product-info p { font-size: 0.88rem; line-height: 1.6; color: #7a5c50; font-weight: 300; }
+    /* FEATURES */
+    .features { background: var(--bark); color: var(--cream); }
+    .features .section-title { color: var(--cream); }
+    .features .section-label { color: var(--caramel); }
+    .features .section-sub   { color: #c4a98a; }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 4rem; }
+    .feature-item { border-top: 2px solid var(--caramel); padding-top: 1.5rem; }
+    .feature-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .feature-item h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.6rem; color: var(--cream); }
+    .feature-item p { font-size: 0.88rem; line-height: 1.7; color: #c4a98a; font-weight: 300; }
+    /* TESTIMONIALS */
+    .testimonials { background: var(--sand); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+    .testi-card { background: var(--cream); padding: 2rem; border: 1px solid rgba(200,154,99,0.3); position: relative; }
+    .testi-card::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--sand); position: absolute; top: 0.5rem; left: 1.2rem; line-height: 1; }
+    .testi-text { font-size: 0.95rem; line-height: 1.8; color: var(--bark); font-style: italic; margin-bottom: 1.5rem; padding-top: 1.5rem; font-weight: 300; }
+    .testi-author { display: flex; align-items: center; gap: 0.8rem; }
+    .testi-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--terracotta); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .testi-name { font-weight: 700; font-size: 0.88rem; color: var(--bark); letter-spacing: 0.05em; }
+    .testi-stars { color: var(--caramel); font-size: 0.8rem; }
+    /* CONTACT / WHATSAPP SECTION */
+    .contact-section { background: var(--terracotta); text-align: center; padding: 5rem 4rem; }
+    .contact-section .section-title { color: #fff; }
+    .contact-section .section-label { color: rgba(255,255,255,0.7); }
+    .contact-section p { color: rgba(255,255,255,0.85); font-weight: 300; max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+    .wa-big {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      background: #fff; color: #25D366;
+      padding: 1rem 2.5rem;
+      font-size: 1rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; font-family: 'Lato', sans-serif;
+      transition: all 0.2s; border: 2px solid #fff;
+      margin-top: 0.5rem;
+    }
+    .wa-big:hover { background: #25D366; color: #fff; transform: translateY(-2px); }
+    /* FOOTER */
+    footer { background: var(--charcoal); color: var(--sand); padding: 4rem 4rem 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.8; color: #9a8070; font-weight: 300; margin-top: 1rem; max-width: 260px; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; color: var(--sand); }
+    .footer-col h5 { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--caramel); font-weight: 700; margin-bottom: 1.2rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.6rem; }
+    .footer-col a { font-size: 0.88rem; color: #9a8070; text-decoration: none; font-weight: 300; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--sand); }
+    .footer-bottom { border-top: 1px solid #3a2e28; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 0.8rem; color: #6a5248; }
+    .social-links { display: flex; gap: 1rem; }
+    .social-links a { width: 36px; height: 36px; border: 1px solid #4a3830; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 0.9rem; transition: all 0.2s; }
+    .social-links a:hover { background: var(--terracotta); border-color: var(--terracotta); }
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    /* MOBILE */
+    /* ═══ PWA INSTALL BANNER ═══ */
+    #pwa-install-banner {
+      display: none;
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      background: var(--bark); color: var(--cream);
+      padding: 1rem 1.5rem; border-radius: 0;
+      box-shadow: 6px 6px 0 var(--terracotta);
+      z-index: 9999; align-items: center; gap: 1rem;
+      font-size: 0.88rem; font-family: 'Lato', sans-serif;
+      max-width: 90vw;
+    }
+    #pwa-install-banner.show { display: flex; }
+    #pwa-install-banner span { flex: 1; }
+    #pwa-btn-install {
+      background: var(--terracotta); color: #fff;
+      border: none; padding: 0.5rem 1.2rem;
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 700; cursor: pointer; font-family: 'Lato', sans-serif;
+      transition: background 0.2s;
+    }
+    #pwa-btn-install:hover { background: var(--caramel); }
+    #pwa-btn-dismiss {
+      background: transparent; color: var(--sand); border: none;
+      font-size: 1.1rem; cursor: pointer; padding: 0 0.3rem; line-height: 1;
+    }
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 6rem 1.5rem 3rem; }
+      .hero-desc { margin: 0 auto 2rem; }
+      .btn-group { justify-content: center; }
+      .hero-visual { display: none; }
+      .about { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+      .products { padding: 4rem 1.5rem; }
+      .products-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
+      .products-grid { grid-template-columns: 1fr; }
+      .features { padding: 4rem 1.5rem; }
+      .features-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .testimonials { padding: 4rem 1.5rem; }
+      .testi-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 1.5rem; }
+      footer { padding: 3rem 1.5rem 2rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>✦</span> Jojo's Creation</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-tag">✦ Handcrafted with Love</div>
+    <h1>Cozy things made <em>by hand,</em> just for you.</h1>
+    <p class="hero-desc">Every stitch tells a story. Discover one-of-a-kind crochet pieces — from snuggly blankets to delicate accessories — crafted with care and quality yarn.</p>
+
+  </div>
+  <div class="hero-visual">
+    <div class="yarn-stage">
+      <div class="product-card product-card-hero pc-main">
+        <div class="badge">✦ New Arrival</div>
+        <span class="yarn-emoji-big">🧶</span>
+        <div class="pc-label">Autumn Throw Blanket</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+
+    <div class="joan-name">Joan </div>
+    <div class="joan-title">Crochet Artisan</div>
+
+    </a>
+  </div>
+  <div class="reveal">
+    <div class="section-label">✦ My Story</div>
+    <h2 class="section-title">Crafted with <em>patience</em> & passion.</h2>
+    <p class="section-sub">I started crocheting in my grandmother's kitchen, learning every knot and loop by hand. Today, each piece I make carries that same warmth and intention — made slowly, made well.</p>
+    <div class="about-list">
+      <div class="about-item"><div class="about-dot"></div><p>100% handmade — no machines, no shortcuts. Every piece is unique.</p></div>
+      <div class="about-item"><div class="about-dot"></div><p>Premium natural yarns: merino wool, cotton, and alpaca blends.</p></div>
+      <div class="about-item"><div class="about-dot"></div><p>Custom orders welcome — your colour, your size, your story.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="shop">
+  <div class="products-header reveal">
+    <div>
+      <div class="section-label">✦ The Collection</div>
+      <h2 class="section-title">Pick your <em>favourite.</em></h2>
+    </div>
+    <a href="https://wa.me/254706953748" target="_blank" class="btn btn-outline">Custom Orders →</a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <div class="product-thumb thumb-cream">🧣<div class="product-tag tag-new">New</div></div>
+      <div class="product-info">
+        <h3>Chunky Infinity Scarf</h3>
+        <p>Super soft merino blend, available in 8 beautiful seasonal colours. Perfect for cold mornings.</p>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-thumb thumb-rose">🧺<div class="product-tag">Popular</div></div>
+      <div class="product-info">
+        <h3>Boho Market Bag</h3>
+        <p>Sturdy cotton crochet tote, stretchy yet durable. Great for groceries, beach, or everyday use.</p>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-thumb thumb-moss">🌿<div class="product-tag tag-new">New</div></div>
+      <div class="product-info">
+        <h3>Plant Pot Holders</h3>
+        <p>Dress up your plants with these charming macramé-style holders. Comes as a set of three.</p>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-thumb thumb-sand">🧸</div>
+      <div class="product-info">
+        <h3>Amigurumi Animals</h3>
+        <p>Adorable handmade stuffed animals — bears, bunnies, and more. The perfect gift for little ones.</p>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-thumb thumb-terra">🛏️<div class="product-tag tag-sale">Bestseller</div></div>
+      <div class="product-info">
+        <h3>Throw Blanket</h3>
+        <p>Chunky, warm and oversized. Handcrafted in rich terracotta, oat, and sage tones. Heirloom quality.</p>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-thumb thumb-sky">🎀</div>
+      <div class="product-info">
+        <h3>Hair Accessories</h3>
+        <p>Bows, scrunchies, and headbands in soft cotton. Fun, colourful, and gentle on hair.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="reveal">
+    <div class="section-label">✦ Why Choose Us</div>
+    <h2 class="section-title">Made differently.</h2>
+    <p class="section-sub">Small batch, big heart. Here's what makes every piece from My Crochet special.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-item reveal"><div class="feature-icon">🤲</div><h4>100% Handmade</h4><p>Every stitch is made by hand with care. No mass production, ever.</p></div>
+    <div class="feature-item reveal"><div class="feature-icon">🌿</div><h4>Natural Materials</h4><p>Soft, sustainable yarns — merino, cotton, and alpaca for lasting comfort.</p></div>
+    <div class="feature-item reveal"><div class="feature-icon">🎨</div><h4>Custom Colours</h4><p>Choose your palette. Every item can be made in your favourite colours.</p></div>
+    <div class="feature-item reveal"><div class="feature-icon">📦</div><h4>Lovingly Packed</h4><p>Each order is wrapped with care, ready for gifting or treasuring yourself.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="reveal" style="text-align:center; margin-bottom: 1rem;">
+    <div class="section-label">✦ Happy Customers</div>
+    <h2 class="section-title">They loved it. <em>You will too.</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <p class="testi-text">The blanket I ordered is absolutely gorgeous. So soft and the colours are even more beautiful in person. Worth every penny!</p>
+      <div class="testi-author"><div class="testi-avatar">🌸</div><div><div class="testi-name">Sarah M.</div><div class="testi-stars">★★★★★</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <p class="testi-text">Ordered a custom amigurumi for my daughter's birthday — she absolutely loves it. The detail is incredible. Will definitely order again!</p>
+      <div class="testi-author"><div class="testi-avatar">🌻</div><div><div class="testi-name">Laura K.</div><div class="testi-stars">★★★★★</div></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <p class="testi-text">The market bag is my everyday essential now. People always ask where I got it. Sturdy, stylish, and so unique. Love it!</p>
+      <div class="testi-author"><div class="testi-avatar">🍂</div><div><div class="testi-name">Priya R.</div><div class="testi-stars">★★★★★</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / WHATSAPP -->
+<section class="contact-section" id="contact">
+  <div class="reveal">
+    <div class="section-label">✦ Get in Touch</div>
+    <h2 class="section-title">Let's make something <em>beautiful.</em></h2>
+    <p>Have a question, want a custom order, or just want to say hi? Reach me directly — I'd love to hear from you!</p>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+
+    <a href="https://wa.me/254706653748"
+       style="background:#ffffff; color:#25D366; padding:14px 25px; border-radius:8px;
+              text-decoration:none; font-weight:600; box-shadow:0 3px 8px rgba(0,0,0,0.1);">
+        WhatsApp
+    </a>
+
+    <a href="tel:+254706653748"
+       style="background:#28a745; color:#fff; padding:12px 22px; border-radius:8px;
+              text-decoration:none; font-weight:600;">
+         Call 
+    </a>
+
+</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">✦ Jojo's Creation</div>
+      <p>Handmade crochet pieces crafted with love, premium yarn, and a lot of patience. Every item is one of a kind — by Joan .</p>
+    </div>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="#shop">Scarves & Wraps</a></li>
+        <li><a href="#shop">Bags & Totes</a></li>
+        <li><a href="#shop">Home Decor</a></li>
+        <li><a href="#shop">Amigurumi</a></li>
+        <li><a href="#shop">Accessories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Info</h5>
+      <ul>
+        <li><a href="#about">My Story</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Custom Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="https://wa.me/254706953748" target="_blank">WhatsApp</a></li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Jojo's Creation Handmade with Love🧡</p>
+
+  </div>
+</footer>
+
+<!-- ═══ PWA INSTALL BANNER ═══ -->
+<div id="pwa-install-banner">
+  <span>🧶 Install Jojo's Creation app!</span>
+  <button id="pwa-btn-install">Install</button>
+  <button id="pwa-btn-dismiss">✕</button>
+</div>
+
+<script>
+  // ── Scroll Reveal ──────────────────────────────────────────
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── Service Worker Registration ────────────────────────────
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('[PWA] Service Worker registered:', reg.scope))
+        .catch(err => console.error('[PWA] Service Worker error:', err));
+    });
+  }
+
+  // ── PWA Install Prompt ─────────────────────────────────────
+  let deferredPrompt;
+  const banner = document.getElementById('pwa-install-banner');
+  const btnInstall = document.getElementById('pwa-btn-install');
+  const btnDismiss = document.getElementById('pwa-btn-dismiss');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    banner.classList.add('show');
+  });
+
+  btnInstall.addEventListener('click', async () => {
+    banner.classList.remove('show');
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log('[PWA] Install outcome:', outcome);
+      deferredPrompt = null;
+    }
+  });
+
+  btnDismiss.addEventListener('click', () => {
+    banner.classList.remove('show');
+  });
+
+  window.addEventListener('appinstalled', () => {
+    console.log('[PWA] App installed!');
+    banner.classList.remove('show');
+  });
+</script>
+</body>
+</html>
